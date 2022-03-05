@@ -2,7 +2,6 @@ package com.wxy.dao;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.file.attribute.UserPrincipalNotFoundException;
 import java.sql.*;
 import java.util.Properties;
 
@@ -19,7 +18,6 @@ public class BaseDao {
     static {
         init();
     }
-
     private static String driver;
     private static String url;
     private static String username;
