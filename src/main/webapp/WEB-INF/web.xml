@@ -9,7 +9,7 @@
   <!--Servlet-->
   <servlet>
     <servlet-name>LoginServlet</servlet-name>
-    <servlet-class>com.wxy.servlet.user.LoginServlet</servlet-class>
+    <servlet-class>com.zjj.servlet.user.LoginServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>LoginServlet</servlet-name>
@@ -18,7 +18,7 @@
 
   <servlet>
     <servlet-name>LogoutServlet</servlet-name>
-    <servlet-class>com.wxy.servlet.user.LogoutServlet</servlet-class>
+    <servlet-class>com.zjj.servlet.user.LogoutServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>LogoutServlet</servlet-name>
@@ -27,7 +27,7 @@
 
   <servlet>
     <servlet-name>UserServlet</servlet-name>
-    <servlet-class>com.wxy.servlet.user.UserServlet</servlet-class>
+    <servlet-class>com.zjj.servlet.user.UserServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>UserServlet</servlet-name>
@@ -36,7 +36,7 @@
 
   <servlet>
     <servlet-name>ProviderServlet</servlet-name>
-    <servlet-class>com.wxy.servlet.provider.ProviderServlet</servlet-class>
+    <servlet-class>com.zjj.servlet.provider.ProviderServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>ProviderServlet</servlet-name>
@@ -45,7 +45,7 @@
 
   <servlet>
     <servlet-name>BillServlet</servlet-name>
-    <servlet-class>com.wxy.servlet.bill.BillServlet</servlet-class>
+    <servlet-class>com.zjj.servlet.bill.BillServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>BillServlet</servlet-name>
@@ -60,7 +60,7 @@
   <!--字符编码过滤器    -->
   <filter>
     <filter-name>CharacterEncodingFilter</filter-name>
-    <filter-class>com.wxy.filter.CharacterEncodingFilter</filter-class>
+    <filter-class>com.zjj.filter.CharacterEncodingFilter</filter-class>
   </filter>
   <filter-mapping>
     <filter-name>CharacterEncodingFilter</filter-name>
@@ -71,7 +71,7 @@
 <!--   用户登录过滤器-->
   <filter>
     <filter-name>SysFilter</filter-name>
-    <filter-class>com.wxy.filter.SysFilter</filter-class>
+    <filter-class>com.zjj.filter.SysFilter</filter-class>
   </filter>
   <filter-mapping>
     <filter-name>SysFilter</filter-name>
