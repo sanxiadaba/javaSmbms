@@ -6,5 +6,5 @@ import java.sql.Connection;
 import java.util.List;
 
 public interface RoleDao {
-    public List<Role> getRoleList(Connection connection)throws Exception;
+    public List<Role> getRoleList(Connection connection) throws Exception;
 }

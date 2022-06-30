@@ -1,6 +1,6 @@
 package com.zjj.dao.provider;
 
-import com.mysql.jdbc.StringUtils;
+import com.mysql.cj.util.StringUtils;
 import com.zjj.dao.BaseDao;
 import com.zjj.pojo.Provider;
 
@@ -77,7 +77,7 @@ public class ProviderDaoImpl implements ProviderDao {
             flag = BaseDao.execute(connection, pstm, sql, params);
             BaseDao.closeResource(null, pstm, null);
         }
-        return  flag;
+        return flag;
     }
 
     @Override
@@ -87,7 +87,8 @@ public class ProviderDaoImpl implements ProviderDao {
         if (null != connection) {
             String sql = "update smbms_provider set proName=?,proDesc=?,proContact=?," +
                     "proPhone=?,proAddress=?,proFax=?,modifyBy=?,modifyDate=? where id = ? ";
-            Object[] params = {provider.getProName(), provider.getProDesc(), provider.getProContact(), provider.getProPhone(), provider.getProAddress(),
+            Object[] params = {provider.getProName(), provider.getProDesc(), provider.getProContact(),
+                    provider.getProPhone(), provider.getProAddress(),
                     provider.getProFax(), provider.getModifyBy(), provider.getModifyDate(), provider.getId()};
             flag = BaseDao.execute(connection, pstm, sql, params);
             BaseDao.closeResource(null, pstm, null);
@@ -123,6 +124,5 @@ public class ProviderDaoImpl implements ProviderDao {
         }
         return provider;
     }
-
 
 }

@@ -16,7 +16,7 @@ public class CharacterEncodingFilter implements Filter {
         servletResponse.setContentType("text/html;charset=UTF-8");
 
         //让我们的请求继续走，如果不写，程序到这里就被拦截停止！
-        filterChain.doFilter(servletRequest,servletResponse);
+        filterChain.doFilter(servletRequest, servletResponse);
     }
 
     @Override

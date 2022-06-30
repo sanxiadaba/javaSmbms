@@ -5,7 +5,6 @@ import com.zjj.pojo.Bill;
 import java.sql.Connection;
 import java.util.List;
 
-
 public interface BillDao {
     /**
      * 增加订单
@@ -36,7 +35,6 @@ public interface BillDao {
      * @throws Exception
      */
     int deleteBillById(Connection connection, String delId) throws Exception;
-
 
     /**
      * 通过billId获取Bill

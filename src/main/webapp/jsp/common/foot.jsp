@@ -7,4 +7,5 @@
 <script type="text/javascript" src="${pageContext.request.contextPath }/statics/js/common.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/statics/calendar/WdatePicker.js"></script>
 </body>
+
 </html>

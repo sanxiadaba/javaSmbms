@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@include file="/jsp/common/head.jsp"%>
+<%@include file="/jsp/common/head.jsp" %>
 <div class="right">
     <div class="location">
         <strong>你现在所在的位置是:</strong>
@@ -14,12 +14,12 @@
         <p><strong>供应商：</strong><span>${bill.providerName }</span></p>
         <p><strong>是否付款：</strong>
             <span>
-         		<c:if test="${bill.isPayment == 1}">未付款</c:if>
-				<c:if test="${bill.isPayment == 2}">已付款</c:if>
-			</span>
+                        <c:if test="${bill.isPayment == 1}">未付款</c:if>
+                        <c:if test="${bill.isPayment == 2}">已付款</c:if>
+                    </span>
         </p>
         <div class="providerAddBtn">
-            <input type="button" id="back" name="back" value="返回" >
+            <input type="button" id="back" name="back" value="返回">
         </div>
     </div>
 </div>

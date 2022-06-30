@@ -1,18 +1,4 @@
-/*
- Navicat Premium Data Transfer
-
- Source Server         : admin
- Source Server Type    : MySQL
- Source Server Version : 50556
- Source Host           : localhost:3306
- Source Schema         : smbms
-
- Target Server Type    : MySQL
- Target Server Version : 50556
- File Encoding         : 65001
-
- Date: 14/10/2018 19:35:06
-*/
+-- 初始数据库的sql文件
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;

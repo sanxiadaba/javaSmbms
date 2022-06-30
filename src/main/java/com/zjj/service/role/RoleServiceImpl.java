@@ -14,7 +14,7 @@ public class RoleServiceImpl implements RoleService {
 
     private RoleDao roleDao;
 
-    public RoleServiceImpl(){
+    public RoleServiceImpl() {
         roleDao = new RoleDaoImpl();
     }
 
@@ -27,14 +27,14 @@ public class RoleServiceImpl implements RoleService {
             roleList = roleDao.getRoleList(connection);
         } catch (Exception e) {
             e.printStackTrace();
-        }finally{
+        } finally {
             BaseDao.closeResource(connection, null, null);
         }
         return roleList;
     }
-    
+
     @Test
-    public void test(){
+    public void test() {
         RoleService roleService = new RoleServiceImpl();
         List<Role> roleList = roleService.getRoleList();
         System.out.println(Arrays.toString(roleList.toArray()));

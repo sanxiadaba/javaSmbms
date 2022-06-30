@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@include file="/jsp/common/head.jsp"%>
+<%@include file="/jsp/common/head.jsp" %>
 
 <div class="right">
     <div class="location">
@@ -7,7 +7,8 @@
         <span>订单管理页面 >> 订单添加页面</span>
     </div>
     <div class="providerAdd">
-        <form id="billForm" name="billForm" method="post" action="${pageContext.request.contextPath }/jsp/bill.do">
+        <form id="billForm" name="billForm" method="post"
+              action="${pageContext.request.contextPath }/jsp/bill.do">
             <!--div的class 为error是验证错误，ok是验证成功-->
             <input type="hidden" name="method" value="add">
             <div class="">
@@ -37,19 +38,19 @@
                 <font color="red"></font>
             </div>
             <div>
-                <label >供应商：</label>
+                <label>供应商：</label>
                 <select name="providerId" id="providerId">
                 </select>
                 <font color="red"></font>
             </div>
             <div>
-                <label >是否付款：</label>
+                <label>是否付款：</label>
                 <input type="radio" name="isPayment" value="1" checked="checked">未付款
-                <input type="radio" name="isPayment" value="2" >已付款
+                <input type="radio" name="isPayment" value="2">已付款
             </div>
             <div class="providerAddBtn">
                 <input type="button" name="add" id="add" value="保存">
-                <input type="button" id="back" name="back" value="返回" >
+                <input type="button" id="back" name="back" value="返回">
             </div>
         </form>
     </div>

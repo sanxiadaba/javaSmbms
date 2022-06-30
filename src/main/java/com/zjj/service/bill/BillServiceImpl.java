@@ -22,8 +22,8 @@ public class BillServiceImpl implements BillService {
         Connection connection = null;
         try {
             connection = BaseDao.getConnection();
-            connection.setAutoCommit(false);//开启JDBC事务管理
-            if(billDao.add(connection,bill) > 0) {
+            connection.setAutoCommit(false);// 开启JDBC事务管理
+            if (billDao.add(connection, bill) > 0) {
                 flag = true;
             }
             connection.commit();
@@ -35,8 +35,8 @@ public class BillServiceImpl implements BillService {
             } catch (SQLException e1) {
                 e1.printStackTrace();
             }
-        }finally{
-            //在service层进行connection连接的关闭
+        } finally {
+            // 在service层进行connection连接的关闭
             BaseDao.closeResource(connection, null, null);
         }
         return flag;
@@ -68,11 +68,11 @@ public class BillServiceImpl implements BillService {
         boolean flag = false;
         try {
             connection = BaseDao.getConnection();
-            if(billDao.deleteBillById(connection, delId) > 0)
+            if (billDao.deleteBillById(connection, delId) > 0)
                 flag = true;
         } catch (Exception e) {
             e.printStackTrace();
-        }finally{
+        } finally {
             BaseDao.closeResource(connection, null, null);
         }
         return flag;
@@ -82,13 +82,13 @@ public class BillServiceImpl implements BillService {
     public Bill getBillById(String id) {
         Bill bill = null;
         Connection connection = null;
-        try{
+        try {
             connection = BaseDao.getConnection();
             bill = billDao.getBillById(connection, id);
-        }catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
             bill = null;
-        }finally{
+        } finally {
             BaseDao.closeResource(connection, null, null);
         }
         return bill;
@@ -100,12 +100,12 @@ public class BillServiceImpl implements BillService {
         boolean flag = false;
         try {
             connection = BaseDao.getConnection();
-            if(billDao.modify(connection,bill) > 0)
+            if (billDao.modify(connection, bill) > 0)
                 flag = true;
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-        }finally{
+        } finally {
             BaseDao.closeResource(connection, null, null);
         }
         return flag;

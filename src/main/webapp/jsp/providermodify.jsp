@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@include file="/jsp/common/head.jsp"%>
+<%@include file="/jsp/common/head.jsp" %>
 
 <div class="right">
     <div class="location">
@@ -7,7 +7,8 @@
         <span>供应商管理页面 >> 供应商修改页</span>
     </div>
     <div class="providerAdd">
-        <form id="providerForm" name="providerForm" method="post" action="${pageContext.request.contextPath }/jsp/provider.do">
+        <form id="providerForm" name="providerForm" method="post"
+              action="${pageContext.request.contextPath }/jsp/provider.do">
             <input type="hidden" name="method" value="modifysave">
             <input type="hidden" name="id" value="${provider.id }"/>
             <!--div的class 为error是验证错误，ok是验证成功-->
@@ -49,11 +50,12 @@
             </div>
             <div class="providerAddBtn">
                 <input type="button" name="save" id="save" value="保存">
-                <input type="button" id="back" name="back" value="返回" >
+                <input type="button" id="back" name="back" value="返回">
             </div>
         </form>
     </div>
 </div>
 </section>
 <%@include file="/jsp/common/foot.jsp" %>
-<script type="text/javascript" src="${pageContext.request.contextPath }/statics/js/providermodify.js"></script>
+<script type="text/javascript"
+        src="${pageContext.request.contextPath }/statics/js/providermodify.js"></script>

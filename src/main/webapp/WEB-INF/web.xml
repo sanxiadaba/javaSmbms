@@ -6,80 +6,100 @@
          version="4.0"
          metadata-complete="true">
 
-  <!--Servlet-->
-  <servlet>
-    <servlet-name>LoginServlet</servlet-name>
-    <servlet-class>com.zjj.servlet.user.LoginServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>LoginServlet</servlet-name>
-    <url-pattern>/login.do</url-pattern>
-  </servlet-mapping>
+    <!--    解决jsp里引入外部js从而产生的乱码问题-->
+    <jsp-config>
+        <jsp-property-group>
+            <display-name>HtmlConfiguration</display-name>
+            <url-pattern>*.html</url-pattern>
+            <page-encoding>UTF-8</page-encoding>
+        </jsp-property-group>
+        <jsp-property-group>
+            <display-name>JspConfiguration</display-name>
+            <url-pattern>*.jsp</url-pattern>
+            <page-encoding>UTF-8</page-encoding>
+        </jsp-property-group>
+        <jsp-property-group>
+            <display-name>JsConfiguration</display-name>
+            <url-pattern>*.js</url-pattern>
+            <page-encoding>UTF-8</page-encoding>
+        </jsp-property-group>
+    </jsp-config>
 
-  <servlet>
-    <servlet-name>LogoutServlet</servlet-name>
-    <servlet-class>com.zjj.servlet.user.LogoutServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>LogoutServlet</servlet-name>
-    <url-pattern>/logout.do</url-pattern>
-  </servlet-mapping>
 
-  <servlet>
-    <servlet-name>UserServlet</servlet-name>
-    <servlet-class>com.zjj.servlet.user.UserServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>UserServlet</servlet-name>
-    <url-pattern>/jsp/user.do</url-pattern>
-  </servlet-mapping>
+    <!--Servlet-->
+    <servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>com.zjj.servlet.user.LoginServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/login.do</url-pattern>
+    </servlet-mapping>
 
-  <servlet>
-    <servlet-name>ProviderServlet</servlet-name>
-    <servlet-class>com.zjj.servlet.provider.ProviderServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ProviderServlet</servlet-name>
-    <url-pattern>/jsp/provider.do</url-pattern>
-  </servlet-mapping>
+    <servlet>
+        <servlet-name>LogoutServlet</servlet-name>
+        <servlet-class>com.zjj.servlet.user.LogoutServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LogoutServlet</servlet-name>
+        <url-pattern>/logout.do</url-pattern>
+    </servlet-mapping>
 
-  <servlet>
-    <servlet-name>BillServlet</servlet-name>
-    <servlet-class>com.zjj.servlet.bill.BillServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>BillServlet</servlet-name>
-    <url-pattern>/jsp/bill.do</url-pattern>
-  </servlet-mapping>
+    <servlet>
+        <servlet-name>UserServlet</servlet-name>
+        <servlet-class>com.zjj.servlet.user.UserServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UserServlet</servlet-name>
+        <url-pattern>/jsp/user.do</url-pattern>
+    </servlet-mapping>
 
-  <!--设置首页-->
-  <welcome-file-list>
-    <welcome-file>login.jsp</welcome-file>
-  </welcome-file-list>
+    <servlet>
+        <servlet-name>ProviderServlet</servlet-name>
+        <servlet-class>com.zjj.servlet.provider.ProviderServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ProviderServlet</servlet-name>
+        <url-pattern>/jsp/provider.do</url-pattern>
+    </servlet-mapping>
 
-  <!--字符编码过滤器    -->
-  <filter>
-    <filter-name>CharacterEncodingFilter</filter-name>
-    <filter-class>com.zjj.filter.CharacterEncodingFilter</filter-class>
-  </filter>
-  <filter-mapping>
-    <filter-name>CharacterEncodingFilter</filter-name>
-    <!--只要是 /的任何请求，会经过这个过滤器-->
-    <url-pattern>/*</url-pattern>
-  </filter-mapping>
+    <servlet>
+        <servlet-name>BillServlet</servlet-name>
+        <servlet-class>com.zjj.servlet.bill.BillServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>BillServlet</servlet-name>
+        <url-pattern>/jsp/bill.do</url-pattern>
+    </servlet-mapping>
 
-<!--   用户登录过滤器-->
-  <filter>
-    <filter-name>SysFilter</filter-name>
-    <filter-class>com.zjj.filter.SysFilter</filter-class>
-  </filter>
-  <filter-mapping>
-    <filter-name>SysFilter</filter-name>
-    <url-pattern>/jsp/*</url-pattern>
-  </filter-mapping>
+    <!--设置首页-->
+    <welcome-file-list>
+        <welcome-file>login.jsp</welcome-file>
+    </welcome-file-list>
 
-<!--  默认Session过期时间-->
-  <session-config>
-    <session-timeout>30</session-timeout>
-  </session-config>
+    <!--字符编码过滤器    -->
+    <filter>
+        <filter-name>CharacterEncodingFilter</filter-name>
+        <filter-class>com.zjj.filter.CharacterEncodingFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>CharacterEncodingFilter</filter-name>
+        <!--只要是 /的任何请求，会经过这个过滤器-->
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <!--   用户登录过滤器-->
+    <filter>
+        <filter-name>SysFilter</filter-name>
+        <filter-class>com.zjj.filter.SysFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>SysFilter</filter-name>
+        <url-pattern>/jsp/*</url-pattern>
+    </filter-mapping>
+
+    <!--  默认Session过期时间-->
+    <session-config>
+        <session-timeout>30</session-timeout>
+    </session-config>
 </web-app>

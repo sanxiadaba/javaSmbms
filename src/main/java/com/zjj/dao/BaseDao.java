@@ -6,17 +6,18 @@ import java.sql.*;
 import java.util.Properties;
 
 public class BaseDao {
-    //静态代码块,在类加载的时候执行
+    // 静态代码块,在类加载的时候执行
     static {
         init();
     }
+
     private static String driver;
     private static String url;
     private static String username;
     private static String password;
 
-    //初始化连接参数,从配置文件里获得
-    public static void init(){
+    // 初始化连接参数,从配置文件里获得
+    public static void init() {
         Properties properties = new Properties();
         String configFile = "db.properties";
         InputStream inputStream = BaseDao.class.getClassLoader().getResourceAsStream(configFile);
@@ -27,31 +28,32 @@ public class BaseDao {
             e.printStackTrace();
         }
 
-        driver=properties.getProperty("driver");
-        url=properties.getProperty("url");
-        username=properties.getProperty("username");
-        password=properties.getProperty("password");
+        driver = properties.getProperty("driver");
+        url = properties.getProperty("url");
+        username = properties.getProperty("username");
+        password = properties.getProperty("password");
     }
 
     /**
      * 获取数据库连接
+     *
      * @return
      */
     public static Connection getConnection() {
-        Connection connection =null;
+        Connection connection = null;
         try {
             Class.forName(driver);
-            connection=DriverManager.getConnection(url,username,password);
-        }catch (Exception e){
+            connection = DriverManager.getConnection(url, username, password);
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
         return connection;
     }
 
-
     /**
      * 编写查询公共类
+     *
      * @param connection
      * @param pstm
      * @param rs
@@ -59,17 +61,19 @@ public class BaseDao {
      * @param params
      * @return
      */
-    public static ResultSet execute(Connection connection,PreparedStatement pstm,ResultSet rs,String sql,Object[] params)throws Exception{
+    public static ResultSet execute(Connection connection, PreparedStatement pstm, ResultSet rs, String sql,
+                                    Object[] params) throws Exception {
         pstm = connection.prepareStatement(sql);
         for (int i = 0; i < params.length; i++) {
-            pstm.setObject(i+1,params[i]);
+            pstm.setObject(i + 1, params[i]);
         }
-        rs=pstm.executeQuery();
+        rs = pstm.executeQuery();
         return rs;
     }
 
     /**
      * 编写增删改公共类
+     *
      * @param connection
      * @param pstm
      * @param sql
@@ -77,12 +81,12 @@ public class BaseDao {
      * @return
      * @throws Exception
      */
-    public static int execute(Connection connection,PreparedStatement pstm,
-                              String sql,Object[] params) throws Exception{
+    public static int execute(Connection connection, PreparedStatement pstm,
+                              String sql, Object[] params) throws Exception {
         int updateRows = 0;
         pstm = connection.prepareStatement(sql);
-        for(int i = 0; i < params.length; i++){
-            pstm.setObject(i+1, params[i]);
+        for (int i = 0; i < params.length; i++) {
+            pstm.setObject(i + 1, params[i]);
         }
         updateRows = pstm.executeUpdate();
         return updateRows;
@@ -90,37 +94,38 @@ public class BaseDao {
 
     /**
      * 释放资源
+     *
      * @param connection
      * @param pstm
      * @param rs
      * @return
      */
-    public static boolean closeResource(Connection connection,PreparedStatement pstm,ResultSet rs){
+    public static boolean closeResource(Connection connection, PreparedStatement pstm, ResultSet rs) {
         boolean flag = true;
-        if(rs != null){
+        if (rs != null) {
             try {
                 rs.close();
-                rs = null;//GC回收
+                rs = null;// GC回收
             } catch (SQLException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
                 flag = false;
             }
         }
-        if(pstm != null){
+        if (pstm != null) {
             try {
                 pstm.close();
-                pstm = null;//GC回收
+                pstm = null;// GC回收
             } catch (SQLException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
                 flag = false;
             }
         }
-        if(connection != null){
+        if (connection != null) {
             try {
                 connection.close();
-                connection = null;//GC回收
+                connection = null;// GC回收
             } catch (SQLException e) {
                 e.printStackTrace();
                 flag = false;

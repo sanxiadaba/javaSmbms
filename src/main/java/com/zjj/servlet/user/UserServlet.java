@@ -1,7 +1,7 @@
 package com.zjj.servlet.user;
 
 import com.alibaba.fastjson.JSONArray;
-import com.mysql.jdbc.StringUtils;
+import com.mysql.cj.util.StringUtils;
 import com.zjj.pojo.Role;
 import com.zjj.pojo.User;
 import com.zjj.service.role.RoleService;
@@ -36,7 +36,7 @@ public class UserServlet extends HttpServlet {
         System.out.println("method----> " + method);
 
         if (method != null && method.equals("add")) {
-            //增加操作
+            // 增加操作
             this.add(req, resp);
         } else if (method != null && method.equals("query")) {
             this.query(req, resp);
@@ -57,7 +57,7 @@ public class UserServlet extends HttpServlet {
         } else if (method != null && method.equals("savepwd")) {
             this.updatePwd(req, resp);
         }
-        //实现复用~~~~~~
+        // 实现复用~~~~~~
         // 想添加新的增删改查，直接用if(method != "savepwd" && method != null);
     }
 
@@ -72,7 +72,7 @@ public class UserServlet extends HttpServlet {
             flag = userService.updatePwd(((User) o).getId(), newpassword);
             if (flag) {
                 request.setAttribute(Constants.SYS_MESSAGE, "修改密码成功,请退出并使用新密码重新登录！");
-                request.getSession().removeAttribute(Constants.USER_SESSION);//session注销
+                request.getSession().removeAttribute(Constants.USER_SESSION);// session注销
             } else {
                 request.setAttribute(Constants.SYS_MESSAGE, "修改密码失败！");
             }
@@ -86,26 +86,26 @@ public class UserServlet extends HttpServlet {
             throws ServletException, IOException {
         Object o = request.getSession().getAttribute(Constants.USER_SESSION);
         String oldpassword = request.getParameter("oldpassword");
-        //万能的Map，一切东西都可以存放
+        // 万能的Map，一切东西都可以存放
         Map<String, String> resultMap = new HashMap<String, String>();
 
-        if (null == o) { //session过期了
+        if (null == o) { // session过期了
             resultMap.put("result", "sessionerror");
-        } else if (StringUtils.isNullOrEmpty(oldpassword)) {//旧密码输入为空
+        } else if (StringUtils.isNullOrEmpty(oldpassword)) {// 旧密码输入为空
             resultMap.put("result", "error");
         } else {
             String sessionPwd = ((User) o).getUserPassword();
             if (oldpassword.equals(sessionPwd)) {
                 resultMap.put("result", "true");
-            } else {//旧密码输入不正确
+            } else {// 旧密码输入不正确
                 resultMap.put("result", "false");
             }
         }
-        //想办法返回一个json值
+        // 想办法返回一个json值
         response.setContentType("application/json");
         PrintWriter outPrintWriter = response.getWriter();
-        //alibab的JSONArray工具类，转换格式使用
-//        ={key，value}  然后传递给前端  result
+        // alibab的JSONArray工具类，转换格式使用
+        // ={key，value} 然后传递给前端 result
         outPrintWriter.write(JSONArray.toJSONString(resultMap));
         outPrintWriter.flush();
         outPrintWriter.close();
@@ -113,21 +113,21 @@ public class UserServlet extends HttpServlet {
 
     private void query(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //查询用户列表
+        // 查询用户列表
 
-        //从前端获取数据
+        // 从前端获取数据
         String queryUserName = request.getParameter("queryname");
         String temp = request.getParameter("queryUserRole");
         String pageIndex = request.getParameter("pageIndex");
         int queryUserRole = 0;
 
-        //获取用户列表
+        // 获取用户列表
         UserService userService = new UserServiceImpl();
 
-        //第一次走页面一定是第一页,页面大小固定的
-        //设置页面容量
+        // 第一次走页面一定是第一页,页面大小固定的
+        // 设置页面容量
         int pageSize = Constants.pageSize;
-        //当前页码
+        // 当前页码
         int currentPageNo = 1;
         /**
          * http://localhost:8090/SMBMS/userlist.do
@@ -142,7 +142,7 @@ public class UserServlet extends HttpServlet {
             queryUserName = "";
         }
         if (temp != null && !temp.equals("")) {
-            queryUserRole = Integer.parseInt(temp);//给查询赋值! 默认为0
+            queryUserRole = Integer.parseInt(temp);// 给查询赋值! 默认为0
         }
         if (pageIndex != null) {
             try {
@@ -152,23 +152,23 @@ public class UserServlet extends HttpServlet {
             }
         }
 
-        //获取用户总数量（分页：上一页 下一页的情况）
+        // 获取用户总数量（分页：上一页 下一页的情况）
         int totalCount = userService.getUserCount(queryUserName, queryUserRole);
-        //总页数支持
+        // 总页数支持
         PageSupport pages = new PageSupport();
-        //设置当前页码
+        // 设置当前页码
         pages.setCurrentPageNo(currentPageNo);
-        //设置页总大小
+        // 设置页总大小
         pages.setPageSize(pageSize);
-        //设置页总数量
+        // 设置页总数量
         pages.setTotalCount(totalCount);
 
-        //控制首页和尾页
+        // 控制首页和尾页
         int totalPageCount = pages.getTotalPageCount();
 
-        if (currentPageNo < 1) {  //显示第一页的东西
+        if (currentPageNo < 1) { // 显示第一页的东西
             currentPageNo = 1;
-        } else if (currentPageNo > totalPageCount) {//当前页面大于最后一页，让它为最后一页就行
+        } else if (currentPageNo > totalPageCount) {// 当前页面大于最后一页，让它为最后一页就行
             currentPageNo = totalPageCount;
         }
 
@@ -247,7 +247,7 @@ public class UserServlet extends HttpServlet {
             }
         }
 
-        //把resultMap转换成json对象输出
+        // 把resultMap转换成json对象输出
         response.setContentType("application/json");
         PrintWriter outPrintWriter = response.getWriter();
         outPrintWriter.write(JSONArray.toJSONString(resultMap));
@@ -293,7 +293,7 @@ public class UserServlet extends HttpServlet {
             throws ServletException, IOException {
         String id = request.getParameter("uid");
         if (!StringUtils.isNullOrEmpty(id)) {
-            //调用后台方法得到user对象
+            // 调用后台方法得到user对象
             UserService userService = new UserServiceImpl();
             User user = userService.getUserById(id);
             request.setAttribute("user", user);
@@ -304,41 +304,40 @@ public class UserServlet extends HttpServlet {
 
     private void userCodeExist(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //判断用户账号是否可用
+        // 判断用户账号是否可用
         String userCode = request.getParameter("userCode");
 
         HashMap<String, String> resultMap = new HashMap<String, String>();
-        if(StringUtils.isNullOrEmpty(userCode)){
-            //userCode == null || userCode.equals("")
+        if (StringUtils.isNullOrEmpty(userCode)) {
+            // userCode == null || userCode.equals("")
             resultMap.put("userCode", "exist");
-        }else{
+        } else {
             UserService userService = new UserServiceImpl();
             User user = userService.selectUserCodeExist(userCode);
-            if(null != user){
-                resultMap.put("userCode","exist");
-            }else{
+            if (null != user) {
+                resultMap.put("userCode", "exist");
+            } else {
                 resultMap.put("userCode", "notexist");
             }
         }
 
-        //把resultMap转为json字符串以json的形式输出
-        //配置上下文的输出类型
+        // 把resultMap转为json字符串以json的形式输出
+        // 配置上下文的输出类型
         response.setContentType("application/json");
-        //从response对象中获取往外输出的writer对象
+        // 从response对象中获取往外输出的writer对象
         PrintWriter outPrintWriter = response.getWriter();
-        //把resultMap转为json字符串 输出
+        // 把resultMap转为json字符串 输出
         outPrintWriter.write(JSONArray.toJSONString(resultMap));
-        outPrintWriter.flush();//刷新
-        outPrintWriter.close();//关闭流
+        outPrintWriter.flush();// 刷新
+        outPrintWriter.close();// 关闭流
     }
-
 
     private void getRoleList(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         List<Role> roleList = null;
         RoleService roleService = new RoleServiceImpl();
         roleList = roleService.getRoleList();
-        //把roleList转换成json对象输出
+        // 把roleList转换成json对象输出
         response.setContentType("application/json");
         PrintWriter outPrintWriter = response.getWriter();
         outPrintWriter.write(JSONArray.toJSONString(roleList));

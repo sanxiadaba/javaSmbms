@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@include file="/jsp/common/head.jsp"%>
+<%@include file="/jsp/common/head.jsp" %>
 <div class="right">
     <div class="location">
         <strong>你现在所在的位置是:</strong>
@@ -10,16 +10,16 @@
         <p><strong>用户名称：</strong><span>${user.userName }</span></p>
         <p><strong>用户性别：</strong>
             <span>
-            		<c:if test="${user.gender == 1 }">男</c:if>
-					<c:if test="${user.gender == 2 }">女</c:if>
-				</span>
+                        <c:if test="${user.gender == 1 }">男</c:if>
+                        <c:if test="${user.gender == 2 }">女</c:if>
+                    </span>
         </p>
         <p><strong>出生日期：</strong><span>${user.birthday }</span></p>
         <p><strong>用户电话：</strong><span>${user.phone }</span></p>
         <p><strong>用户地址：</strong><span>${user.address }</span></p>
         <p><strong>用户角色：</strong><span>${user.userRoleName}</span></p>
         <div class="providerAddBtn">
-            <input type="button" id="back" name="back" value="返回" >
+            <input type="button" id="back" name="back" value="返回">
         </div>
     </div>
 </div>

@@ -1,6 +1,6 @@
 package com.zjj.dao.bill;
 
-import com.mysql.jdbc.StringUtils;
+import com.mysql.cj.util.StringUtils;
 import com.zjj.dao.BaseDao;
 import com.zjj.pojo.Bill;
 
@@ -9,7 +9,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-
 
 public class BillDaoImpl implements BillDao {
 
@@ -40,7 +39,8 @@ public class BillDaoImpl implements BillDao {
         List<Bill> billList = new ArrayList<Bill>();
         if (connection != null) {
             StringBuffer sql = new StringBuffer();
-            sql.append("select b.*,p.proName as providerName from smbms_bill b, smbms_provider p where b.providerId = p.id");
+            sql.append(
+                    "select b.*,p.proName as providerName from smbms_bill b, smbms_provider p where b.providerId = p.id");
             List<Object> list = new ArrayList<Object>();
             if (!StringUtils.isNullOrEmpty(bill.getProductName())) {
                 sql.append(" and productName like ?");
@@ -121,7 +121,6 @@ public class BillDaoImpl implements BillDao {
         }
         return bill;
     }
-
 
     @Override
     public int modify(Connection connection, Bill bill) throws Exception {

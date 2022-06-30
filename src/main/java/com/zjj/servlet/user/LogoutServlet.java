@@ -11,15 +11,15 @@ import java.io.IOException;
 public class LogoutServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        //清除session
+        // 清除session
         req.getSession().removeAttribute(Constants.USER_SESSION);
 
         Object o = req.getSession().getAttribute(Constants.USER_SESSION);
-        if(o==null){
+        if (o == null) {
             System.out.println("xiaochule");
         }
 
-        resp.sendRedirect(req.getContextPath()+"/login.jsp");//返回登录页面
+        resp.sendRedirect(req.getContextPath() + "/login.jsp");// 返回登录页面
     }
 
     @Override

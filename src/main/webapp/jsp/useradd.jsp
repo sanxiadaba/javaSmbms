@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@include file="/jsp/common/head.jsp"%>
+<%@include file="/jsp/common/head.jsp" %>
 
 <div class="right">
     <div class="location">
@@ -7,7 +7,8 @@
         <span>用户管理页面 >> 用户添加页面</span>
     </div>
     <div class="providerAdd">
-        <form id="userForm" name="userForm" method="post" action="${pageContext.request.contextPath }/jsp/user.do">
+        <form id="userForm" name="userForm" method="post"
+              action="${pageContext.request.contextPath }/jsp/user.do">
             <input type="hidden" name="method" value="add">
             <!--div的class 为error是验证错误，ok是验证成功-->
             <div>
@@ -32,7 +33,7 @@
                 <font color="red"></font>
             </div>
             <div>
-                <label >用户性别：</label>
+                <label>用户性别：</label>
                 <select name="gender" id="gender">
                     <option value="1" selected="selected">男</option>
                     <option value="2">女</option>
@@ -40,8 +41,8 @@
             </div>
             <div>
                 <label for="birthday">出生日期：</label>
-                <input type="text" Class="Wdate" id="birthday" name="birthday"
-                       readonly="readonly" onclick="WdatePicker();">
+                <input type="text" Class="Wdate" id="birthday" name="birthday" readonly="readonly"
+                       onclick="WdatePicker();">
                 <font color="red"></font>
             </div>
             <div>
@@ -51,17 +52,17 @@
             </div>
             <div>
                 <label for="address">用户地址：</label>
-                <input name="address" id="address"  value="">
+                <input name="address" id="address" value="">
             </div>
             <div>
-                <label >用户角色：</label>
+                <label>用户角色：</label>
                 <!-- 列出所有的角色分类 -->
                 <select name="userRole" id="userRole"></select>
                 <font color="red"></font>
             </div>
             <div class="providerAddBtn">
-                <input type="button" name="add" id="add" value="保存" >
-                <input type="button" id="back" name="back" value="返回" >
+                <input type="button" name="add" id="add" value="保存">
+                <input type="button" id="back" name="back" value="返回">
             </div>
         </form>
     </div>

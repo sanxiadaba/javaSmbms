@@ -18,7 +18,8 @@
                     <option value="0">--请选择--</option>
                     <c:forEach var="provider" items="${providerList}">
                         <option
-                                <c:if test="${provider.id == queryProviderId }">selected="selected"</c:if>
+                                <c:if test="${provider.id == queryProviderId }">selected="selected"
+                        </c:if>
                                 value="${provider.id}">${provider.proName}</option>
                     </c:forEach>
                 </c:if>
@@ -27,8 +28,8 @@
             <span>是否付款：</span>
             <select name="queryIsPayment">
                 <option value="0">--请选择--</option>
-                <option value="1" ${queryIsPayment == 1 ? "selected=\"selected\"":"" }>未付款</option>
-                <option value="2" ${queryIsPayment == 2 ? "selected=\"selected\"":"" }>已付款</option>
+                <option value="1" ${queryIsPayment==1 ? "selected=\" selected\"":"" }>未付款</option>
+                <option value="2" ${queryIsPayment==2 ? "selected=\" selected\"":"" }>已付款</option>
             </select>
 
             <input value="查 询" type="submit" id="searchbutton">
@@ -61,23 +62,26 @@
                     <span>${bill.totalPrice}</span>
                 </td>
                 <td>
-					<span>
-						<c:if test="${bill.isPayment == 1}">未付款</c:if>
-						<c:if test="${bill.isPayment == 2}">已付款</c:if>
-					</span>
+                            <span>
+                                <c:if test="${bill.isPayment == 1}">未付款</c:if>
+                                <c:if test="${bill.isPayment == 2}">已付款</c:if>
+                            </span>
                 </td>
                 <td>
-					<span>
-					<fmt:formatDate value="${bill.creationDate}" pattern="yyyy-MM-dd"/>
-					</span>
+                            <span>
+                                <fmt:formatDate value="${bill.creationDate}" pattern="yyyy-MM-dd"/>
+                            </span>
                 </td>
                 <td>
-                    <span><a class="viewBill" href="javascript:;" billid=${bill.id } billcc=${bill.billCode }><img
-                            src="${pageContext.request.contextPath }/statics/images/read.png" alt="查看" title="查看"/></a></span>
-                    <span><a class="modifyBill" href="javascript:;" billid=${bill.id } billcc=${bill.billCode }><img
-                            src="${pageContext.request.contextPath }/statics/images/xiugai.png" alt="修改" title="修改"/></a></span>
-                    <span><a class="deleteBill" href="javascript:;" billid=${bill.id } billcc=${bill.billCode }><img
-                            src="${pageContext.request.contextPath }/statics/images/schu.png" alt="删除" title="删除"/></a></span>
+                            <span><a class="viewBill" href="javascript:;" billid=${bill.id } billcc=${bill.billCode
+                                    }><img src="${pageContext.request.contextPath }/statics/images/read.png" alt="查看"
+                                           title="查看"/></a></span>
+                    <span><a class="modifyBill" href="javascript:;" billid=${bill.id } billcc=${bill.billCode
+                            }><img src="${pageContext.request.contextPath }/statics/images/xiugai.png" alt="修改"
+                                   title="修改"/></a></span>
+                    <span><a class="deleteBill" href="javascript:;" billid=${bill.id } billcc=${bill.billCode
+                            }><img src="${pageContext.request.contextPath }/statics/images/schu.png" alt="删除"
+                                   title="删除"/></a></span>
                 </td>
             </tr>
         </c:forEach>
