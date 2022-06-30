@@ -1,7 +1,7 @@
 .idea
 target
 .vscode
-/smbms.iml
+smbms.iml
 # Compiled class file
 *.class
 
