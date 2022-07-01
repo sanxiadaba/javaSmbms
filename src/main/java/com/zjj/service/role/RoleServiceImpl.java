@@ -1,14 +1,15 @@
 package com.zjj.service.role;
 
+import java.sql.Connection;
+import java.util.Arrays;
+import java.util.List;
+
+import org.junit.Test;
+
 import com.zjj.dao.BaseDao;
 import com.zjj.dao.role.RoleDao;
 import com.zjj.dao.role.RoleDaoImpl;
 import com.zjj.pojo.Role;
-import org.junit.Test;
-
-import java.sql.Connection;
-import java.util.Arrays;
-import java.util.List;
 
 public class RoleServiceImpl implements RoleService {
 

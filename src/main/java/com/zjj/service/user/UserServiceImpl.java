@@ -1,13 +1,13 @@
 package com.zjj.service.user;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.List;
+
 import com.zjj.dao.BaseDao;
 import com.zjj.dao.user.UserDao;
 import com.zjj.dao.user.UserDaoImpl;
 import com.zjj.pojo.User;
-
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.util.List;
 
 /**
  * service层捕获异常，进行事务处理
@@ -26,14 +26,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User login(String userCode, String userPassword) {
-        // TODO Auto-generated method stub
         Connection connection = null;
         User user = null;
         try {
             connection = BaseDao.getConnection();
             user = userDao.getLoginUser(connection, userCode);
         } catch (Exception e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         } finally {
             BaseDao.closeResource(connection, null, null);
@@ -125,7 +123,6 @@ public class UserServiceImpl implements UserService {
                 System.out.println("rollback==================");
                 connection.rollback();
             } catch (SQLException e1) {
-                // TODO Auto-generated catch block
                 e1.printStackTrace();
             }
         } finally {
@@ -199,25 +196,5 @@ public class UserServiceImpl implements UserService {
         }
         return user;
     }
-    /*
-     * @Test
-     * public void test() {
-     * UserServiceImpl userService = new UserServiceImpl();
-     * String userCode = "admin";
-     * String userPassword = "12345678";
-     * User admin = userService.login(userCode, userPassword);
-     * System.out.println(admin.getUserPassword());
-     *
-     * }
-     */
-
-    /*
-     * @Test
-     * public void test(){
-     * UserService userService = new UserServiceImpl();
-     * int userCount = userService.getUserCount(null,1);
-     * System.out.println(userCount);
-     * }
-     */
 
 }

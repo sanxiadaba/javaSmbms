@@ -1,5 +1,17 @@
 package com.zjj.servlet.provider;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import com.alibaba.fastjson.JSONArray;
 import com.mysql.cj.util.StringUtils;
 import com.zjj.pojo.Provider;
@@ -7,17 +19,6 @@ import com.zjj.pojo.User;
 import com.zjj.service.Provider.ProviderService;
 import com.zjj.service.Provider.ProviderServiceImpl;
 import com.zjj.util.Constants;
-
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
 
 public class ProviderServlet extends HttpServlet {
     @Override

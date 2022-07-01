@@ -1,5 +1,19 @@
 package com.zjj.servlet.user;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import com.alibaba.fastjson.JSONArray;
 import com.mysql.cj.util.StringUtils;
 import com.zjj.pojo.Role;
@@ -10,19 +24,6 @@ import com.zjj.service.user.UserService;
 import com.zjj.service.user.UserServiceImpl;
 import com.zjj.util.Constants;
 import com.zjj.util.PageSupport;
-
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public class UserServlet extends HttpServlet {
     @Override
@@ -87,6 +88,7 @@ public class UserServlet extends HttpServlet {
         Object o = request.getSession().getAttribute(Constants.USER_SESSION);
         String oldpassword = request.getParameter("oldpassword");
         // 万能的Map，一切东西都可以存放
+        // 而且Map可以方便地转换为json格式
         Map<String, String> resultMap = new HashMap<String, String>();
 
         if (null == o) { // session过期了
@@ -129,12 +131,7 @@ public class UserServlet extends HttpServlet {
         int pageSize = Constants.pageSize;
         // 当前页码
         int currentPageNo = 1;
-        /**
-         * http://localhost:8090/SMBMS/userlist.do
-         * ----queryUserName --NULL
-         * http://localhost:8090/SMBMS/userlist.do?queryname=
-         * --queryUserName ---""
-         */
+
         System.out.println("queryUserName servlet--------" + queryUserName);
         System.out.println("queryUserRole servlet--------" + queryUserRole);
         System.out.println("query pageIndex--------- > " + pageIndex);

@@ -1,5 +1,6 @@
 package com.zjj.util;
 
+// 分页的设置
 public class PageSupport {
     // 当前页码-来自于用户输入
     private int currentPageNo = 1;

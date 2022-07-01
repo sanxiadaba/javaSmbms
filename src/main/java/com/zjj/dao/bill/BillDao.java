@@ -1,69 +1,27 @@
 package com.zjj.dao.bill;
 
-import com.zjj.pojo.Bill;
-
 import java.sql.Connection;
 import java.util.List;
 
+import com.zjj.pojo.Bill;
+
 public interface BillDao {
-    /**
-     * 增加订单
-     *
-     * @param connection
-     * @param bill
-     * @return
-     * @throws Exception
-     */
+    // 增加订单
     int add(Connection connection, Bill bill) throws Exception;
 
-    /**
-     * 通过查询条件获取供应商列表-模糊查询-getBillList
-     *
-     * @param connection
-     * @param bill
-     * @return
-     * @throws Exception
-     */
+    // 通过查询条件获取供应商列表-模糊查询-getBillList
     List<Bill> getBillList(Connection connection, Bill bill) throws Exception;
 
-    /**
-     * 通过delId删除Bill
-     *
-     * @param connection
-     * @param delId
-     * @return
-     * @throws Exception
-     */
+    // 通过delId删除Bill
     int deleteBillById(Connection connection, String delId) throws Exception;
 
-    /**
-     * 通过billId获取Bill
-     *
-     * @param connection
-     * @param id
-     * @return
-     * @throws Exception
-     */
+    // 通过billId获取Bill
     Bill getBillById(Connection connection, String id) throws Exception;
 
-    /**
-     * 修改订单信息
-     *
-     * @param connection
-     * @param bill
-     * @return
-     * @throws Exception
-     */
+    // 修改订单信息
     int modify(Connection connection, Bill bill) throws Exception;
 
-    /**
-     * 根据供应商ID查询订单数量
-     *
-     * @param connection
-     * @param providerId
-     * @return
-     * @throws Exception
-     */
+    // 根据供应商ID查询订单数量
     int getBillCountByProviderId(Connection connection, String providerId) throws Exception;
 
 }

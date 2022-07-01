@@ -3,7 +3,7 @@
 
 初始管理员账户：**admin**
 
-初始管理员密码：**1234567**
+初始管理员密码：**123456**
 
 #### 包含功能：
 
@@ -16,13 +16,13 @@
 
 
 
-![image-20220524123148994](README.assets/image-20220524123148994.png)
-
-![image-20220524123215928](README.assets/image-20220524123215928.png)
+![image-20220701162307528](README.assets/image-20220701162307528.png)
 
 #### 项目参考
 
 B站【遇见狂神说】JavaWeb项目【超市订单管理系统】
 
-项目环境： IDEA2020.3.1 JDK1.8.0_202 Tomcat9.0.58 MySql5.7.36
+项目环境： JDK1.8  Tomcat9  MySql5.7
+参考：
 https://www.bilibili.com/video/BV12J411M7Sj
+https://blog.csdn.net/TTiamo_/article/details/121115124

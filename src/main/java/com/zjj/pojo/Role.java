@@ -2,7 +2,6 @@ package com.zjj.pojo;
 
 import java.util.Date;
 
-
 public class Role {
     private Integer id; // id
     private String roleCode; // 角色编码

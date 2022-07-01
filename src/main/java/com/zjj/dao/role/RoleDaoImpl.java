@@ -1,16 +1,17 @@
 package com.zjj.dao.role;
 
-import com.zjj.dao.BaseDao;
-import com.zjj.pojo.Role;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.zjj.dao.BaseDao;
+import com.zjj.pojo.Role;
+
 public class RoleDaoImpl implements RoleDao {
 
+    // 获取所有的role
     @Override
     public List<Role> getRoleList(Connection connection) throws Exception {
         PreparedStatement pstm = null;

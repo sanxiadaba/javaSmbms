@@ -1,14 +1,14 @@
 package com.zjj.dao.provider;
 
-import com.mysql.cj.util.StringUtils;
-import com.zjj.dao.BaseDao;
-import com.zjj.pojo.Provider;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.mysql.cj.util.StringUtils;
+import com.zjj.dao.BaseDao;
+import com.zjj.pojo.Provider;
 
 public class ProviderDaoImpl implements ProviderDao {
 
@@ -58,9 +58,9 @@ public class ProviderDaoImpl implements ProviderDao {
             String sql = "insert into smbms_provider (proCode,proName,proDesc," +
                     "proContact,proPhone,proAddress,proFax,createdBy,creationDate) " +
                     "values(?,?,?,?,?,?,?,?,?)";
-            Object[] params = {provider.getProCode(), provider.getProName(), provider.getProDesc(),
+            Object[] params = { provider.getProCode(), provider.getProName(), provider.getProDesc(),
                     provider.getProContact(), provider.getProPhone(), provider.getProAddress(),
-                    provider.getProFax(), provider.getCreatedBy(), provider.getCreationDate()};
+                    provider.getProFax(), provider.getCreatedBy(), provider.getCreationDate() };
             flag = BaseDao.execute(connection, pstm, sql, params);
             BaseDao.closeResource(null, pstm, null);
         }
@@ -73,7 +73,7 @@ public class ProviderDaoImpl implements ProviderDao {
         int flag = 0;
         if (null != connection) {
             String sql = "delete from smbms_provider where id=?";
-            Object[] params = {delId};
+            Object[] params = { delId };
             flag = BaseDao.execute(connection, pstm, sql, params);
             BaseDao.closeResource(null, pstm, null);
         }
@@ -87,9 +87,9 @@ public class ProviderDaoImpl implements ProviderDao {
         if (null != connection) {
             String sql = "update smbms_provider set proName=?,proDesc=?,proContact=?," +
                     "proPhone=?,proAddress=?,proFax=?,modifyBy=?,modifyDate=? where id = ? ";
-            Object[] params = {provider.getProName(), provider.getProDesc(), provider.getProContact(),
+            Object[] params = { provider.getProName(), provider.getProDesc(), provider.getProContact(),
                     provider.getProPhone(), provider.getProAddress(),
-                    provider.getProFax(), provider.getModifyBy(), provider.getModifyDate(), provider.getId()};
+                    provider.getProFax(), provider.getModifyBy(), provider.getModifyDate(), provider.getId() };
             flag = BaseDao.execute(connection, pstm, sql, params);
             BaseDao.closeResource(null, pstm, null);
         }
@@ -103,7 +103,7 @@ public class ProviderDaoImpl implements ProviderDao {
         ResultSet rs = null;
         if (null != connection) {
             String sql = "select * from smbms_provider where id=?";
-            Object[] params = {id};
+            Object[] params = { id };
             rs = BaseDao.execute(connection, pstm, rs, sql, params);
             if (rs.next()) {
                 provider = new Provider();

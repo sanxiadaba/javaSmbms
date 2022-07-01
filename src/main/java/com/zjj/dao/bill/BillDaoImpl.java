@@ -1,29 +1,28 @@
 package com.zjj.dao.bill;
 
-import com.mysql.cj.util.StringUtils;
-import com.zjj.dao.BaseDao;
-import com.zjj.pojo.Bill;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.mysql.cj.util.StringUtils;
+import com.zjj.dao.BaseDao;
+import com.zjj.pojo.Bill;
+
 public class BillDaoImpl implements BillDao {
 
     @Override
     public int add(Connection connection, Bill bill) throws Exception {
-        // TODO Auto-generated method stub
         PreparedStatement pstm = null;
         int flag = 0;
         if (null != connection) {
             String sql = "insert into smbms_bill (billCode,productName,productDesc," +
                     "productUnit,productCount,totalPrice,isPayment,providerId,createdBy,creationDate) " +
                     "values(?,?,?,?,?,?,?,?,?,?)";
-            Object[] params = {bill.getBillCode(), bill.getProductName(), bill.getProductDesc(),
+            Object[] params = { bill.getBillCode(), bill.getProductName(), bill.getProductDesc(),
                     bill.getProductUnit(), bill.getProductCount(), bill.getTotalPrice(), bill.getIsPayment(),
-                    bill.getProviderId(), bill.getCreatedBy(), bill.getCreationDate()};
+                    bill.getProviderId(), bill.getCreatedBy(), bill.getCreationDate() };
             flag = BaseDao.execute(connection, pstm, sql, params);
             BaseDao.closeResource(null, pstm, null);
             System.out.println("dao--------flag " + flag);
@@ -85,7 +84,7 @@ public class BillDaoImpl implements BillDao {
         int flag = 0;
         if (null != connection) {
             String sql = "delete from smbms_bill where id=?";
-            Object[] params = {delId};
+            Object[] params = { delId };
             flag = BaseDao.execute(connection, pstm, sql, params);
             BaseDao.closeResource(null, pstm, null);
         }
@@ -100,7 +99,7 @@ public class BillDaoImpl implements BillDao {
         if (null != connection) {
             String sql = "select b.*,p.proName as providerName from smbms_bill b, smbms_provider p " +
                     "where b.providerId = p.id and b.id=?";
-            Object[] params = {id};
+            Object[] params = { id };
             rs = BaseDao.execute(connection, pstm, rs, sql, params);
             if (rs.next()) {
                 bill = new Bill();
@@ -124,16 +123,15 @@ public class BillDaoImpl implements BillDao {
 
     @Override
     public int modify(Connection connection, Bill bill) throws Exception {
-        // TODO Auto-generated method stub
         int flag = 0;
         PreparedStatement pstm = null;
         if (null != connection) {
             String sql = "update smbms_bill set productName=?," +
                     "productDesc=?,productUnit=?,productCount=?,totalPrice=?," +
                     "isPayment=?,providerId=?,modifyBy=?,modifyDate=? where id = ? ";
-            Object[] params = {bill.getProductName(), bill.getProductDesc(),
+            Object[] params = { bill.getProductName(), bill.getProductDesc(),
                     bill.getProductUnit(), bill.getProductCount(), bill.getTotalPrice(), bill.getIsPayment(),
-                    bill.getProviderId(), bill.getModifyBy(), bill.getModifyDate(), bill.getId()};
+                    bill.getProviderId(), bill.getModifyBy(), bill.getModifyDate(), bill.getId() };
             flag = BaseDao.execute(connection, pstm, sql, params);
             BaseDao.closeResource(null, pstm, null);
         }
@@ -143,14 +141,13 @@ public class BillDaoImpl implements BillDao {
     @Override
     public int getBillCountByProviderId(Connection connection, String providerId)
             throws Exception {
-        // TODO Auto-generated method stub
         int count = 0;
         PreparedStatement pstm = null;
         ResultSet rs = null;
         if (null != connection) {
             String sql = "select count(1) as billCount from smbms_bill where" +
                     "	providerId = ?";
-            Object[] params = {providerId};
+            Object[] params = { providerId };
             rs = BaseDao.execute(connection, pstm, rs, sql, params);
             if (rs.next()) {
                 count = rs.getInt("billCount");

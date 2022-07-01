@@ -2,15 +2,21 @@ package com.zjj.dao;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Properties;
 
+//操作数据库的公共类
 public class BaseDao {
-    // 静态代码块,在类加载的时候执行
+    // 静态代码块,在类加载的时候执行，且只执行一次
     static {
         init();
     }
 
+    // 配置文件的各个参数
     private static String driver;
     private static String url;
     private static String username;
@@ -20,6 +26,7 @@ public class BaseDao {
     public static void init() {
         Properties properties = new Properties();
         String configFile = "db.properties";
+        // 通过类加载器去读取对应的资源
         InputStream inputStream = BaseDao.class.getClassLoader().getResourceAsStream(configFile);
 
         try {
@@ -34,11 +41,7 @@ public class BaseDao {
         password = properties.getProperty("password");
     }
 
-    /**
-     * 获取数据库连接
-     *
-     * @return
-     */
+    // 获取数据库连接
     public static Connection getConnection() {
         Connection connection = null;
         try {
@@ -47,23 +50,18 @@ public class BaseDao {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+        // 返回一个数据库连接
         return connection;
     }
 
-    /**
-     * 编写查询公共类
-     *
-     * @param connection
-     * @param pstm
-     * @param rs
-     * @param sql
-     * @param params
-     * @return
-     */
+    // 编写查询公共类
+    // 传入：连接、PreparedStatement、结果集的返回对象、要执行的sql、参数列表
     public static ResultSet execute(Connection connection, PreparedStatement pstm, ResultSet rs, String sql,
-                                    Object[] params) throws Exception {
+            Object[] params) throws Exception {
+        // 预编译的sql，执行的时候不需要传sql,防止sql注入
+        // 参见文章 https://www.jianshu.com/p/245a05eef716
         pstm = connection.prepareStatement(sql);
+        // 占位符替换
         for (int i = 0; i < params.length; i++) {
             pstm.setObject(i + 1, params[i]);
         }
@@ -71,35 +69,20 @@ public class BaseDao {
         return rs;
     }
 
-    /**
-     * 编写增删改公共类
-     *
-     * @param connection
-     * @param pstm
-     * @param sql
-     * @param params
-     * @return
-     * @throws Exception
-     */
+    // 编写增删改公共类
     public static int execute(Connection connection, PreparedStatement pstm,
-                              String sql, Object[] params) throws Exception {
+            String sql, Object[] params) throws Exception {
         int updateRows = 0;
         pstm = connection.prepareStatement(sql);
         for (int i = 0; i < params.length; i++) {
             pstm.setObject(i + 1, params[i]);
         }
         updateRows = pstm.executeUpdate();
+        // 删改增都是update,返回的是操作收到影响的行数
         return updateRows;
     }
 
-    /**
-     * 释放资源
-     *
-     * @param connection
-     * @param pstm
-     * @param rs
-     * @return
-     */
+    // 释放资源
     public static boolean closeResource(Connection connection, PreparedStatement pstm, ResultSet rs) {
         boolean flag = true;
         if (rs != null) {
@@ -107,7 +90,6 @@ public class BaseDao {
                 rs.close();
                 rs = null;// GC回收
             } catch (SQLException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
                 flag = false;
             }
@@ -117,7 +99,6 @@ public class BaseDao {
                 pstm.close();
                 pstm = null;// GC回收
             } catch (SQLException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
                 flag = false;
             }
@@ -131,7 +112,6 @@ public class BaseDao {
                 flag = false;
             }
         }
-
         return flag;
     }
 }

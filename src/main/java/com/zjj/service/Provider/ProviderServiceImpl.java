@@ -1,15 +1,15 @@
 package com.zjj.service.Provider;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.List;
+
 import com.zjj.dao.BaseDao;
 import com.zjj.dao.bill.BillDao;
 import com.zjj.dao.bill.BillDaoImpl;
 import com.zjj.dao.provider.ProviderDao;
 import com.zjj.dao.provider.ProviderDaoImpl;
 import com.zjj.pojo.Provider;
-
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.util.List;
 
 public class ProviderServiceImpl implements ProviderService {
     private ProviderDao providerDao;
@@ -86,7 +86,6 @@ public class ProviderServiceImpl implements ProviderService {
             try {
                 connection.rollback();
             } catch (SQLException e1) {
-                // TODO Auto-generated catch block
                 e1.printStackTrace();
             }
         } finally {
@@ -105,7 +104,6 @@ public class ProviderServiceImpl implements ProviderService {
                 flag = true;
             }
         } catch (Exception e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         } finally {
             BaseDao.closeResource(connection, null, null);
